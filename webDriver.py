@@ -4,6 +4,7 @@ import time
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import WebDriverException
 from bs4 import BeautifulSoup
+import platform
 
 from webparser import BasicHTMLProcessing
 
@@ -23,7 +24,10 @@ class CustomDriver(BasicHTMLProcessing):
         if drvType == CustomDriver.FIREFOX:
             self.wDriver = webdriver.Firefox()
         elif drvType == CustomDriver.CHROME:
-            chromeDriver = "C:\\Users\\gokul\\Desktop\\Software\\chromedriver.exe"
+            if platform.system() == 'Linux':
+                chromeDriver = '/usr/bin/chromedriver'
+            else:
+                chromeDriver = "C:\\Users\\gokul\\Desktop\\Software\\chromedriver.exe"
             self.wDriver = webdriver.Chrome(chromeDriver)
         else:
             assert(0)

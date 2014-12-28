@@ -1,4 +1,4 @@
-# -------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Name:       PasswordProtect 
 # Purpose:
 #
@@ -7,16 +7,18 @@
 # Created:     24/01/2014
 # Copyright:   (c) gokul 2014
 # Licence:     <your licence>
-# -------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 import keyring
 import optparse
-
+import platform
 
 class PasswordProtect(object):
     def __init__(self, service):
         self.service = service
 
     def getPass(self, username):
+        if platform.system() == 'Linux':
+            return 'omsakthi'
         pswd = keyring.get_password(self.service, username)
         return pswd
 
@@ -31,8 +33,8 @@ def main():
     p.add_option("-p", "--password", type="string", action="store", dest="pswd")
     opt, _ = p.parse_args()
 
-    p = PasswordProtect(opt.url)
-    p.setPass(opt.user, opt.pswd)
+    ps_pt = PasswordProtect(opt.url)
+    ps_pt.setPass(opt.userid, opt.pswd)
 
 
 if __name__ == '__main__':
