@@ -1,4 +1,4 @@
-import optparse
+import argparse
 
 from webDriver import CustomDriver
 
@@ -7,10 +7,11 @@ from applog import AppLog
 
 
 def main():
-    p = optparse.OptionParser()
-    p.add_option("-b", "--baseurl", type="string", action="store", dest="url")
-    p.add_option("-u", "--userid", type="string", action="store", dest="userid")
-    opt, args = p.parse_args()
+    p = argparse.ArgumentParser(description=
+                                'Login to stock broker and extract relevant stock information')
+    p.add_argument("-b", "--baseurl", dest="url", help="base URL of the site")
+    p.add_argument("-u", "--userid", dest="userid", help="user ID of the account")
+    args = p.parse_args()
 
     mydriver = CustomDriver(CustomDriver.CHROME, opt.url)
     mydriver.initURL()
