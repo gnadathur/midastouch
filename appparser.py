@@ -26,7 +26,7 @@ class TDPositions(BasicHTMLProcessing):
         if self.from_file is None:
             self.baseUrl = baseUrl
             self.userId = userid
-            al = AutoLogin(self.baseUrl, self.userId, self.mydriver)
+            al = AutoLogin("system", self.userId, self.mydriver)
             al.logon()
 
     @logtrace

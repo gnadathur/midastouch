@@ -11,7 +11,7 @@ def main():
                                 'Login to stock broker and extract relevant stock information')
     p.add_argument("-b", "--baseurl", dest="url", help="base URL of the site")
     p.add_argument("-u", "--userid", dest="userid", help="user ID of the account")
-    args = p.parse_args()
+    opt = p.parse_args()
 
     mydriver = CustomDriver(CustomDriver.CHROME, opt.url)
     mydriver.initURL()

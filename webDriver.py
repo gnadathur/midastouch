@@ -19,9 +19,12 @@ def ajax_complete(driver):
 class CustomDriver(BasicHTMLProcessing):
     FIREFOX=0
     CHROME=1
+
     def __init__(self, drvType, baseUrl, fromFile = None):
         super(CustomDriver, self).__init__()
-        if drvType == CustomDriver.FIREFOX:
+        if platform.system() == 'Darwin':
+            self.wDriver = webdriver.Safari()
+        elif drvType == CustomDriver.FIREFOX:
             self.wDriver = webdriver.Firefox()
         elif drvType == CustomDriver.CHROME:
             if platform.system() == 'Linux':
